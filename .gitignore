@@ -1,0 +1,22 @@
+# go-libs .gitignore
+
+# Go 编译产物
+*.exe
+*.test
+*.out
+
+# 测试临时
+coverage.out
+
+# 本地环境
+.env
+*.local
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 系统
+Thumbs.db
+.DS_Store
