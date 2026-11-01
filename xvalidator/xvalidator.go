@@ -93,14 +93,14 @@ func translate(err error) error {
 		es.Errors = append(es.Errors, FieldError{
 			Field:   fe.Field(),
 			Tag:     fe.Tag(),
-			Message: msg(fe.Field(), fe.Tag(), fe.Param()),
+			Message: errorMessage(fe.Field(), fe.Tag(), fe.Param()),
 		})
 	}
 	return es
 }
 
-// msg 根据校验 tag 生成中文消息
-func msg(field, tag, param string) string {
+// errorMessage 根据校验 tag 生成中文错误消息
+func errorMessage(field, tag, param string) string {
 	switch tag {
 	case "required":
 		return fmt.Sprintf("%s 为必填项", field)

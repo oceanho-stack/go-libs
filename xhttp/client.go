@@ -57,21 +57,21 @@ func NewClient(opts Options) *Client {
 
 // Get 发送 GET 请求，解析响应到 out（out 可为 nil）
 func (c *Client) Get(ctx context.Context, path string, out any) error {
-	return c.do(ctx, http.MethodGet, path, nil, out)
+	return c.doJSON(ctx, http.MethodGet, path, nil, out)
 }
 
 // PostJSON 发送 POST + JSON body，解析响应到 out
 func (c *Client) PostJSON(ctx context.Context, path string, body, out any) error {
-	return c.do(ctx, http.MethodPost, path, body, out)
+	return c.doJSON(ctx, http.MethodPost, path, body, out)
 }
 
-// Do 发送请求（完整控制）
+// Do 发送请求（完整控制），返回原始响应
 func (c *Client) Do(ctx context.Context, method, path string, body io.Reader, header map[string]string) (*http.Response, error) {
-	return c.roundTrip(ctx, method, path, body, header)
+	return c.do(ctx, method, path, body, header)
 }
 
-// do 统一处理 JSON 请求/响应 + 重试
-func (c *Client) do(ctx context.Context, method, path string, body, out any) error {
+// doJSON 发送 JSON 请求并解析 JSON 响应
+func (c *Client) doJSON(ctx context.Context, method, path string, body, out any) error {
 	var bodyReader io.Reader
 	if body != nil {
 		b, err := json.Marshal(body)
@@ -86,7 +86,7 @@ func (c *Client) do(ctx context.Context, method, path string, body, out any) err
 		header["Content-Type"] = "application/json"
 	}
 
-	resp, err := c.roundTrip(ctx, method, path, bodyReader, header)
+	resp, err := c.do(ctx, method, path, bodyReader, header)
 	if err != nil {
 		return err
 	}
@@ -105,8 +105,8 @@ func (c *Client) do(ctx context.Context, method, path string, body, out any) err
 	return nil
 }
 
-// roundTrip 发送请求，带重试
-func (c *Client) roundTrip(ctx context.Context, method, path string, body io.Reader, header map[string]string) (*http.Response, error) {
+// do 发送请求，带重试，返回原始响应
+func (c *Client) do(ctx context.Context, method, path string, body io.Reader, header map[string]string) (*http.Response, error) {
 	attempts := 1
 	if !c.opts.DisableRetry && c.opts.MaxRetries > 0 {
 		attempts += c.opts.MaxRetries

@@ -61,16 +61,16 @@ func TestSnowflakeDifferentMachines(t *testing.T) {
 	}
 }
 
-func TestNextIDStr(t *testing.T) {
+func TestNextIDString(t *testing.T) {
 	gen, _ := NewSnowflake(3)
-	s := gen.NextIDStr()
+	s := gen.NextIDString()
 	if s == "" {
-		t.Error("NextIDStr 为空")
+		t.Error("NextIDString 为空")
 	}
 	// 字符串应为纯数字
 	for _, c := range s {
 		if c < '0' || c > '9' {
-			t.Errorf("NextIDStr 含非数字: %q", s)
+			t.Errorf("NextIDString 含非数字: %q", s)
 		}
 	}
 }

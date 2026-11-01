@@ -13,8 +13,8 @@ import (
 type Generator interface {
 	// NextID 返回下一个唯一 ID
 	NextID() uint64
-	// NextIDStr 返回下一个唯一 ID 的十进制字符串
-	NextIDStr() string
+	// NextIDString 返回下一个唯一 ID 的十进制字符串
+	NextIDString() string
 }
 
 // 雪花算法常量
@@ -84,7 +84,7 @@ func (s *Snowflake) NextID() uint64 {
 	return uint64(id)
 }
 
-// NextIDStr 返回十进制字符串
-func (s *Snowflake) NextIDStr() string {
+// NextIDString 返回十进制字符串
+func (s *Snowflake) NextIDString() string {
 	return strconv.FormatUint(s.NextID(), 10)
 }

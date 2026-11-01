@@ -4,7 +4,7 @@ xid 是 oceanho-stack 的 ID 生成库，提供接口化、可切换实现的唯
 
 ## 特性
 
-- `Generator` 接口：`NextID() uint64`、`NextIDStr() string`
+- `Generator` 接口：`NextID() uint64`、`NextIDString() string`
 - 雪花算法实现（`Snowflake`）：时间戳 + 机器ID + 序列号，趋势递增
 - 机器ID自动从节点名/配置获取，避免多实例冲突
 - 无第三方依赖，标准库实现
@@ -17,7 +17,7 @@ gen, err := xid.NewSnowflake(1)
 if err != nil { panic(err) }
 
 id := gen.NextID()      // uint64
-idStr := gen.NextIDStr() // 十进制字符串
+idStr := gen.NextIDString() // 十进制字符串
 ```
 
 ## 设计
