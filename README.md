@@ -20,11 +20,12 @@ oceanho-stack 的公共 Go 工具库集合，独立 git 仓库，无业务依赖
 | xcrypto | 加密工具（bcrypt/AES-GCM/RSA/随机/摘要） | ✅ 已实现 |
 | xcache | 缓存抽象（Redis + 内存实现） | ✅ 已实现 |
 | xhttp | HTTP 客户端（超时/JSON/trace/重试） | ✅ 已实现 |
+| xtime | 统一时间处理（多布局解析/业务时区/时间戳互转/日期运算） | ✅ 已实现 |
 
 ## 实现顺序（依赖方向）
 
 ```
-xlog → xcfg → xtrace → xdb → xvalidator/xid/xcrypto → xcache → xhttp
+xlog → xcfg → xtrace → xdb → xvalidator/xid/xcrypto → xcache → xhttp → xtime
 ```
 
 ## 依赖规则（硬性约束）
