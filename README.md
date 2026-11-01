@@ -12,14 +12,14 @@ oceanho-stack 的公共 Go 工具库集合，独立 git 仓库，无业务依赖
 | 库 | 说明 | 状态 |
 |---|---|---|
 | xlog | 统一日志（slog 封装，链路字段透传） | ✅ 已实现 |
-| xcfg | 配置加载（默认值→yaml→env→命令行） | 待实现 |
-| xtrace | 链路追踪（context 透传 trace/span） | 待实现 |
-| xdb | GORM 基础封装（连接池/慢日志/事务/BasePageQuery） | 待实现 |
-| xvalidator | 参数校验包装 | 待实现 |
-| xid | ID 生成器 | 待实现 |
-| xcrypto | 加密工具 | 待实现 |
-| xcache | 缓存抽象 | 待实现 |
-| xhttp | HTTP 客户端与基础中间件 | 待实现 |
+| xcfg | 配置加载（默认值→yaml→env→命令行） | ✅ 已实现 |
+| xtrace | 链路追踪（context 透传 trace/span） | ✅ 已实现 |
+| xdb | GORM 基础封装（连接池/慢日志/事务/BasePageQuery） | ✅ 已实现 |
+| xvalidator | 参数校验包装（中文错误翻译，自定义 id tag） | ✅ 已实现 |
+| xid | ID 生成器（雪花算法，接口化） | ✅ 已实现 |
+| xcrypto | 加密工具（bcrypt/AES-GCM/RSA/随机/摘要） | ✅ 已实现 |
+| xcache | 缓存抽象（Redis + 内存实现） | ✅ 已实现 |
+| xhttp | HTTP 客户端（超时/JSON/trace/重试） | ✅ 已实现 |
 
 ## 实现顺序（依赖方向）
 
